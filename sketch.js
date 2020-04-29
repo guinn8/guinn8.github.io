@@ -22,7 +22,7 @@ function setup() {
 function draw() {
 	clear();
 	drawGrid();
-	for(let i=1; i<slider.value() ;i++){
+	for(let i=0; i<slider.value() ;i++){
 		factorPair(i);
 	}
 	
@@ -51,11 +51,17 @@ function drawGrid(){
 }
 
 function plot(x,y){
-	circle(OFF + (x * inter), (SQ-OFF) - (y * inter), 10)
+	if(x<SIZE && y < SIZE){
+		circle(OFF + (x * inter), (SQ-OFF) - (y * inter), 10)
+	}
+	
 }
 
 function plot(list){
-	circle(OFF + (list[0] * inter), (SQ-OFF) - (list[1] * inter), 10)
+	if(list[0]<SIZE && list[1] < SIZE){
+		circle(OFF + (list[0] * inter), (SQ-OFF) - (list[1] * inter), 10)
+	}
+	
 }
 
 
