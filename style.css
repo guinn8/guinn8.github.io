@@ -2,7 +2,7 @@
     .topbar{
       display: flex;
       height: calc(12vh);
-      background-color: #2b303b;
+      background-color: #23272A;
     }
     
     .contentContainer{
@@ -17,7 +17,7 @@
 }
 
 .currentPage{
-    background: #5e81ac;
+    background: #7289DA;
     flex-basis:calc(12vh);
 }
 
