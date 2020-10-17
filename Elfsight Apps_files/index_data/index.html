@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Preview</title>
+<style>.eapps-preview {
+  overflow: hidden;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 150px;
+  min-height: 100%;
+  transition: 0.2s;
+}
+.eapps-preview-toolbar {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  z-index: 10;
+}
+@media only screen and (max-width: 480px) {
+  .eapps-preview-toolbar {
+    display: none;
+  }
+}
+.eapps-preview-toolbar-item {
+  position: relative;
+}
+.eapps-preview-toolbar-item-trigger {
+  box-sizing: border-box;
+  padding: 3px 6px;
+  background: #38393a;
+  cursor: pointer;
+}
+.eapps-preview-toolbar-item-trigger:first-child {
+  padding-top: 6px;
+}
+.eapps-preview-toolbar-item-trigger:last-child {
+  padding-bottom: 6px;
+}
+.eapps-preview-toolbar-item-trigger:hover .eapps-preview-toolbar-item-icon svg {
+  fill: #fff;
+}
+.eapps-preview-toolbar-item-icon {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  width: 26px;
+  height: 26px;
+}
+.eapps-preview-toolbar-item-active .eapps-preview-toolbar-item-icon {
+  background: #2c2c2d;
+}
+.eapps-preview-toolbar-item-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: #66686a;
+  transition: 0.1s;
+}
+.eapps-preview-toolbar-item-active .eapps-preview-toolbar-item-icon svg {
+  fill: #fff;
+}
+.eapps-preview-toolbar-item-values {
+  visibility: hidden;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  position: absolute;
+  top: 0px;
+  right: 38px;
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: 0.2s;
+  opacity: 0;
+  background: #38393a;
+}
+.eapps-preview-toolbar-item-active .eapps-preview-toolbar-item-values {
+  visibility: visible;
+  opacity: 1;
+  right: 42px;
+}
+.eapps-preview-toolbar-item-value {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  box-sizing: border-box;
+  padding: 4px 2px;
+  cursor: pointer;
+}
+.eapps-preview-toolbar-item-value-icon {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 2px;
+}
+html {
+  height: 100%;
+  overflow: auto;
+}
+body {
+  margin: 0;
+  height: 100%;
+  background: #38393a;
+}
+.widget {
+  max-width: 100%;
+}
+.eapps-preview-background-white {
+  background: #fff;
+}
+.eapps-preview-background-black {
+  background: #252627;
+  color: #fff;
+}
+.eapps-preview-background-white-chess {
+  background-image: url(data:image/png;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAUAAA/+4AJkFkb2JlAGTAAAAAAQMAFQQDBgoNAAABpgAAAccAAAIDAAACMP/bAIQAAgICAgICAgICAgMCAgIDBAMCAgMEBQQEBAQEBQYFBQUFBQUGBgcHCAcHBgkJCgoJCQwMDAwMDAwMDAwMDAwMDAEDAwMFBAUJBgYJDQsJCw0PDg4ODg8PDAwMDAwPDwwMDAwMDA8MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8IAEQgAFAAUAwERAAIRAQMRAf/EAH8AAAMBAQAAAAAAAAAAAAAAAAIDBAEIAQEAAAAAAAAAAAAAAAAAAAAAEAACAwEAAAAAAAAAAAAAAAAAATARMRARAQAAAAAAAAAAAAAAAAAAADASAQAAAAAAAAAAAAAAAAAAADATAAEEAwEAAAAAAAAAAAAAAAEAEDAx8BGxYf/aAAwDAQACEQMRAAAB7kHhgCzCgnBP/9oACAEBAAEFAhYUjC3x6f/aAAgBAgABBQKH/9oACAEDAAEFAof/2gAIAQICBj8CH//aAAgBAwIGPwIf/9oACAEBAQY/Ah//2gAIAQEDAT8hVTeSJJaFL2a5v//aAAgBAgMBPyGH/9oACAEDAwE/IYf/2gAMAwEAAhEDEQAAEBBJBB//2gAIAQEDAT8QXV1sRKOD6CgsQDcXG//aAAgBAgMBPxCH/9oACAEDAwE/EIf/2Q==);
+}
+.eapps-preview-background-black-chess {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpiVFfXYMAN/v3/j0eWiYECMKp5ZGhmIZCGGBlHA2xUMyWaAQIMAJSTBpxFdlboAAAAAElFTkSuQmCC);
+  color: #fff;
+}
+</style><style>.eapp-social-feed-root-layout-component {
+  position: relative;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+.eapp-social-feed-root-layout-component,
+.eapp-social-feed-root-layout-component * {
+  box-sizing: border-box !important;
+  outline: none !important;
+}
+.eapp-social-feed-root-layout-component a {
+  text-decoration: none;
+}
+.eapp-social-feed-root-layout-component a:hover,
+.eapp-social-feed-root-layout-component a:focus {
+  text-decoration: underline;
+}
+</style><style>body {
+  padding: 20px;
+  box-sizing: border-box;
+  font: 400 normal 15px/1.3 -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+}
+body:after {
+  content: '';
+  display: block;
+  height: 20px;
+}
+.eapps-preview-widget {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  margin: 0 auto;
+  min-width: 150px;
+  min-height: 100%;
+  transition: 0.2s;
+}
+</style><style type="text/css" data-styled-jsx=""></style><style data-styled="active" data-styled-version="5.2.0"></style></head>
+<body class="eapps-preview-background-white">
+<div class="eapps-preview">
+<div class="eapps-preview-widget"><style></style><div id="eapps-social-feed-1" data-app="eapps-social-feed" data-app-version="1.0.0" class="jsx-37067334 eapp-social-feed-root-layout-component eapps-social-feed-1-custom-css-hook"><div class="Foundation__Outer-sc-11tbro4-0 gSZjrc WidgetBackground__StyledFoundation-g841xp-0 ljRmAp"><div class="Foundation__Inner-sc-11tbro4-1 kJrSTX"><div class="Main__Inner-sc-4yhl8u-0 keXlDA"><div style="padding-left: 0px;" class="Grid__Container-x730z7-0 dvlMxW"><div style="width: 198.5px; margin-top: 0px; margin-right: 2px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/121571971_975033862964446_2430595884637357613_n.jpg" alt="Do you want to learn more about git? Want more options than deleting the repo and starting again if something goes wrong? 
+
+Join CSUS in our latest academic event Git Gud where we will teach you git from the basics! Follow us on Twitch: csuscalgary where the event will take place and join our discord server (link in bio) for reminders and a link on the day of the event!!
+.
+.
+.
+&lt;a href=&quot;https://www.instagram.com/explore/tags/ucalgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#ucalgary&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/uofc/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#uofc&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/computerscience/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#computerscience&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/csus/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#csus&lt;/a&gt;"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Do
+ you want to learn more about git? Want more options than deleting the 
+repo and starting again if something goes wrong? 
+
+Join CSUS in our latest academic event Git Gud where we will teach you 
+git from the basics! Follow us on Twitch: csuscalgary where the event 
+will take place and join our discord server (link in bio) for reminders 
+and a link on the day of the event!!
+.
+.
+.
+<a href="https://www.instagram.com/explore/tags/ucalgary/" target="_blank" rel="noreferrer noopener">#ucalgary</a> <a href="https://www.instagram.com/explore/tags/uofc/" target="_blank" rel="noreferrer noopener">#uofc</a> <a href="https://www.instagram.com/explore/tags/computerscience/" target="_blank" rel="noreferrer noopener">#computerscience</a> <a href="https://www.instagram.com/explore/tags/csus/" target="_blank" rel="noreferrer noopener">#csus</a></div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 0px; margin-right: 2px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/121251868_208354850673269_466619560439134447_n.jpg" alt="Hello friends!! Our next virtual coffee is coming up on October 20 – it will be a Q &amp; A with one of our new faculty members, Richard Zhao, who specializes in games programming. He’s looking for students to work with him on research, AND he’ll be teaching CPSC 599.44 (Machine Learning) in Winter, so I hope anybody who’s curious will swing by to chat with Richard! Registration link on Zoom is in the &lt;a href=&quot;https://www.instagram.com/uofc_cpsc/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;@uofc_cpsc&lt;/a&gt; bio!! It can also be found in the &lt;a href=&quot;https://www.instagram.com/explore/tags/announcements/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#announcements&lt;/a&gt; channel of our Discord server (link in bio)"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Hello
+ friends!! Our next virtual coffee is coming up on October 20 – it will 
+be a Q &amp; A with one of our new faculty members, Richard Zhao, who 
+specializes in games programming. He’s looking for students to work with
+ him on research, AND he’ll be teaching CPSC 599.44 (Machine Learning) 
+in Winter, so I hope anybody who’s curious will swing by to chat with 
+Richard! Registration link on Zoom is in the <a href="https://www.instagram.com/uofc_cpsc/" target="_blank" rel="noreferrer noopener">@uofc_cpsc</a> bio!! It can also be found in the <a href="https://www.instagram.com/explore/tags/announcements/" target="_blank" rel="noreferrer noopener">#announcements</a> channel of our Discord server (link in bio)</div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 0px; margin-right: 2px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/120791715_2698654250463438_5339726231399164962_n.jpg" alt="CSUS is collaborating with AIESEC to present &quot;Data Science in Industry&quot;. The event will be discussing the ins and outs of one of the hottest CPSC careers and work through a data science problem! Check out their post for more info &lt;a href=&quot;https://www.instagram.com/aiesec_in_calgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;@aiesec_in_calgary&lt;/a&gt; or register: &lt;a href=&quot;https://forms.gle/xmbZQK7ph1xBfqwx5&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;https://forms.gle/xmbZQK7ph1xBfqwx5&lt;/a&gt; (link is also on our Discord server (link in bio))"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>CSUS
+ is collaborating with AIESEC to present "Data Science in Industry". The
+ event will be discussing the ins and outs of one of the hottest CPSC 
+careers and work through a data science problem! Check out their post 
+for more info <a href="https://www.instagram.com/aiesec_in_calgary/" target="_blank" rel="noreferrer noopener">@aiesec_in_calgary</a> or register: <a href="https://forms.gle/xmbZQK7ph1xBfqwx5" target="_blank" rel="noreferrer noopener">https://forms.gle/xmbZQK7ph1xBfqwx5</a> (link is also on our Discord server (link in bio))</div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 0px; margin-right: 0px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/120845657_366028504445340_4264487048547748253_n.jpg" alt="Hey everyone! On Thursday, October 15 CSUS is having a Spooky Movie Night! Join our Discord (link in bio) to vote and help us decide what movie we're going to watch!! Happy Halloweeeeeen!! 
+.
+&lt;a href=&quot;https://www.instagram.com/explore/tags/csus/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#csus&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/ucalgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#ucalgary&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/uofc/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#uofc&lt;/a&gt;"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Hey
+ everyone! On Thursday, October 15 CSUS is having a Spooky Movie Night! 
+Join our Discord (link in bio) to vote and help us decide what movie 
+we're going to watch!! Happy Halloweeeeeen!! 
+.
+<a href="https://www.instagram.com/explore/tags/csus/" target="_blank" rel="noreferrer noopener">#csus</a> <a href="https://www.instagram.com/explore/tags/ucalgary/" target="_blank" rel="noreferrer noopener">#ucalgary</a> <a href="https://www.instagram.com/explore/tags/uofc/" target="_blank" rel="noreferrer noopener">#uofc</a></div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 2px; margin-right: 2px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/120400069_650767239203920_2849767721419327132_n.jpg" alt="Hello friends!! This week Thursday is our Intro to Bash event! Come learn about the most popular (and useful) tool used in CPSC! Learning to work at the command line is an essential skill for any computer science student or dev. This tutorial is designed to introduce new users to the command-line. Register for the event at the link in the # announcements channel of our Discord server (link in bio). We hope to see you there!
+.
+.
+.
+&lt;a href=&quot;https://www.instagram.com/explore/tags/ucalgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#ucalgary&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/uofc/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#uofc&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/computerscience/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#computerscience&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/csus/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#csus&lt;/a&gt;"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Hello
+ friends!! This week Thursday is our Intro to Bash event! Come learn 
+about the most popular (and useful) tool used in CPSC! Learning to work 
+at the command line is an essential skill for any computer science 
+student or dev. This tutorial is designed to introduce new users to the 
+command-line. Register for the event at the link in the # announcements 
+channel of our Discord server (link in bio). We hope to see you there!
+.
+.
+.
+<a href="https://www.instagram.com/explore/tags/ucalgary/" target="_blank" rel="noreferrer noopener">#ucalgary</a> <a href="https://www.instagram.com/explore/tags/uofc/" target="_blank" rel="noreferrer noopener">#uofc</a> <a href="https://www.instagram.com/explore/tags/computerscience/" target="_blank" rel="noreferrer noopener">#computerscience</a> <a href="https://www.instagram.com/explore/tags/csus/" target="_blank" rel="noreferrer noopener">#csus</a></div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 2px; margin-right: 2px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/120130412_340910643820949_78453911114216771_n.jpg" alt="Hey everyone and especially First Years! Next Tuesday the 29th at 11am some of our very own CSUS friends are going to be panelists for the Computer Science Virtual Coffees Student Panel! We'd love to see you! Check out the Zoom link in &lt;a href=&quot;https://www.instagram.com/uofc_cpsc/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;@uofc_cpsc&lt;/a&gt; 's bio!!"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Hey
+ everyone and especially First Years! Next Tuesday the 29th at 11am some
+ of our very own CSUS friends are going to be panelists for the Computer
+ Science Virtual Coffees Student Panel! We'd love to see you! Check out 
+the Zoom link in <a href="https://www.instagram.com/uofc_cpsc/" target="_blank" rel="noreferrer noopener">@uofc_cpsc</a> 's bio!!</div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 2px; margin-right: 2px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"><div class="Media__MediaContainer-sb2n02-0 eBMrbg"><div class="Image__Container-upkguw-0 iAbesn"><img src="index_data/119070075_689291808360220_2865873540399610702_n.jpg" alt="Hello friends!! Next week is our fall semester meet and greet, and you're all invited! We're hosting it virtually this year on our Discord server (link in bio), so we can have fun together even though we're taking courses remotely. We'll be hanging out and playing games together, and there will be prizes you can win just by hanging out with us!! We all look forward to spending time with you. See you there!
+.
+.
+.
+&lt;a href=&quot;https://www.instagram.com/explore/tags/ucalgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#ucalgary&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/uofc/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#uofc&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/computerscience/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#computerscience&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/university/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#university&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/universityofcalgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#universityofcalgary&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/explore/tags/csus/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#csus&lt;/a&gt;  &lt;a href=&quot;https://www.instagram.com/explore/tags/csusucalgary/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;#csusucalgary&lt;/a&gt;"></div></div></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Hello
+ friends!! Next week is our fall semester meet and greet, and you're all
+ invited! We're hosting it virtually this year on our Discord server 
+(link in bio), so we can have fun together even though we're taking 
+courses remotely. We'll be hanging out and playing games together, and 
+there will be prizes you can win just by hanging out with us!! We all 
+look forward to spending time with you. See you there!
+.
+.
+.
+<a href="https://www.instagram.com/explore/tags/ucalgary/" target="_blank" rel="noreferrer noopener">#ucalgary</a> <a href="https://www.instagram.com/explore/tags/uofc/" target="_blank" rel="noreferrer noopener">#uofc</a> <a href="https://www.instagram.com/explore/tags/computerscience/" target="_blank" rel="noreferrer noopener">#computerscience</a> <a href="https://www.instagram.com/explore/tags/university/" target="_blank" rel="noreferrer noopener">#university</a> <a href="https://www.instagram.com/explore/tags/universityofcalgary/" target="_blank" rel="noreferrer noopener">#universityofcalgary</a> <a href="https://www.instagram.com/explore/tags/csus/" target="_blank" rel="noreferrer noopener">#csus</a>  <a href="https://www.instagram.com/explore/tags/csusucalgary/" target="_blank" rel="noreferrer noopener">#csusucalgary</a></div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div><div style="width: 198.5px; margin-top: 2px; margin-right: 0px;"><div tabindex="0" class="CardLayout__Container-sc-1yn4oa3-5 CardContainer-sc-18st37f-0 thWto bWJxZX"><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__OuterBlock-sc-1yn4oa3-2 coZrhY"><div class="MediaProvider__Container-yjsck8-0 JAxyr"><div class="MediaProvider__Media-yjsck8-1 gUdJvE"></div></div><div class="CardLayout__Layer-sc-1yn4oa3-3 kFMwhI"></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 coZrhY"><div class="Text__Container-sc-221xn5-0 gXvCcQ"><div class="Shortener__Outer-liq5l-0 vvmWZ"><div class="Shortener__Inner-liq5l-1 eifA-DA"><div>Hey everyone!! Wow what an amazing event we had with <a href="https://www.instagram.com/ess_uofc/" target="_blank" rel="noreferrer noopener">@ess_uofc</a> and <a href="https://www.instagram.com/inzoogram/" target="_blank" rel="noreferrer noopener">@inzoogram</a>
+ ! Our Virtual Games Night was a huge success! We met lots of new people
+ and made so many friends! Thank you for coming out everyone. Enjoy 
+these highlights! Join us on our Discord to participate in our next 
+events (link  in our bio). See you next time!
+.
+.
+.
+<a href="https://www.instagram.com/explore/tags/ucalgary/" target="_blank" rel="noreferrer noopener">#ucalgary</a> <a href="https://www.instagram.com/explore/tags/uofc/" target="_blank" rel="noreferrer noopener">#uofc</a> <a href="https://www.instagram.com/explore/tags/computerscience/" target="_blank" rel="noreferrer noopener">#computerscience</a> <a href="https://www.instagram.com/explore/tags/university/" target="_blank" rel="noreferrer noopener">#university</a> <a href="https://www.instagram.com/explore/tags/universityofcalgary/" target="_blank" rel="noreferrer noopener">#universityofcalgary</a> <a href="https://www.instagram.com/explore/tags/csus/" target="_blank" rel="noreferrer noopener">#csus</a></div></div></div><div class="Text__Control-sc-221xn5-1 hnssrC">Read more</div></div></div><div class="CardLayout__Block-sc-1yn4oa3-0 CardLayout__RegularBlock-sc-1yn4oa3-1 hQbmCw"><div class="User__Container-sc-15v2trs-4 hJkGWR"><div class="User__Info-sc-15v2trs-1 jhmPwL"><div class="User__Name-sc-15v2trs-2 dbZnLQ">@csusucalgary</div><div class="User__Caption-sc-15v2trs-3 fkmUvm"><div></div></div></div></div></div></div></div></div><div class="LoadMoreButton__Container-cx0810-0 dLELCY"><div class="LoadMoreButton__Button-cx0810-1 bQkqWo">Load More</div></div></div></div></div></div></div>
+</div>
+<script type="text/javascript" src="index_data/index.js"></script>
+
+<div><div class="eapp-social-feed-root-layout-component eapps-social-feed-1-custom-css-hook" id="portal-1"></div></div></body></html>

@@ -1,49 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=1024">
 <style>
-* {
-  box-sizing: border-box;
-}
+@media(min-width:468px){
 
-.header {
-  border: 1px solid red;
-  padding: 15px;
-}
+  
+    .container-1{
+      display:flex;
+      height: calc(12vh);
+    
+      background-color: #2b303b;
+    
 
-.menu {
-  width: 50%;
+    }
+    
+    .container-2{
+      display:flex;  
+     
+      justify-content:space-between;
+    }
+  }
+  
+  .container-3{
+    display:flex;  
+    flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  
+  .container-1 div, .container-2 div, .container-3 div{
+    
+    padding:10px;
+  }
+  
+  .csusBox{
+    background: #5e81ac;
+    flex-basis:calc(12vh);
+    
+  }
+  
+  .calHaxBox{
+    flex-basis:calc(12vh);
+    
+  }
+  .box-2{
+    flex:1;
+    
+  }
+  
+  .box-3{
+    flex:1;
+   
+  }
+  
+  .container-2-box{
+    flex-basis: 75%;  
+  }
 
-  float: left;
-  padding: 15px;
-  border: 1px solid red;
-}
-
-.main {
-  width: 25%;
-  float: left;
-  padding: 15px;
-  border: 1px solid red;
-}
-
-
-.flex-container {
-  display: flex;
-  flex-wrap: nowrap;
-  background-color: white;
-
-}
-.flex-container > div {
-  background-color: #f1f1f1;
-  width: 100px;
-  margin: 5px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-}
+  .discordbox{
+    flex-basis: 25%;
+  }
+  
+  body{
+    background-color: #4c556a;
+  }
+  
 
 img{
+  margin-left: auto;
+  margin-right: auto;
         max-width: 100%;
         max-height: 100%;
         display: block; /* remove extra space below image */
@@ -54,25 +79,66 @@ img{
 </head>
 <body>
 
-<div class="header">
-    <div class="flex-container">
-        <div><img src="https://github.com/guinn8/guinn8.github.io/blob/master/images/csuscircle(3).png"></div>
-        <div><img src="https://github.com/guinn8/guinn8.github.io/blob/master/images/calgaryhacks_small.png"></div>
+  <div class="container-1">
+    <div class="csusBox">
+      <img src="images/csuscirclewhite.png">
+    </div>
+    <div class="calHaxBox">
+      <a href="calgaryHacks.html">
+        <img src="images/calgaryhacks_small.png">
+      </a>
+    </div>
+   
+  </div>
+    
+  <div class="container-2">
+
+    <div class="container-2-box">
+      <h1>What is CSUS?</h1>
+
+      This is the University of Calgary's Computer Science Undergraduate Societies (CSUS) Discord server.
+      Since at least the 1980's (we don't exactly know)  CSUS has been dedicated to improving the condition of Computer Science majors and along with the CPSC curious. We have an clubroom in Math Science 130 (MS130) which can be found by taking a hard right when you enter MS. You will find the club's exec team and members hanging out in the room for most of the school day but there is never a guarantee that the room will be open.
+      
+    </br>
+
+      
+      
+      <h1>What does CSUS do?</h1>
+      <ol>
+        <li>CSUS is a connection between the Department of Computer Science and the undergrad population. This involves attending meetings with faculty to plan events or discussing undergrad issues. </li>
+
+        <li> CSUS provides a community for those interested in CPSC. Our clubroom MS130 provides a place for people to come chill during breaks between classes; nobody should be forced to eat lunch alone. </li>
+  
+        <li>CSUS holds a variety of social events but a perennial favorite is board games and pizza.</li>
+  
+        <li>holds academic events to teach important CPSC skills, for example tutorials on Git or BASH.</li> 
+  
+        <li>holds the hackathon Calgary Hacks on an annual basis. This event challenges groups of up to 8 people to develop and application in response to a prompt. We invite students from any faculty and any Albertan school to come compete and develop something rad.</li> 
+  
+        <li>CSUS is a place to shit post memes</li> 
+      </ol>
      
-      </div>
-</div>
+    
+      <h1>What does it mean to be a CSUS member?</h1>
 
-<div class="menu">
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-</div>
+      Unlike other clubs CSUS is not about accomplishing specific task (ie. solar car club) but rather about providing a community for people with similar interests. Because of this membership in our club is a unstructured thing where we don't ask you specifically to sign up for some email list or pay an entry fee. Instead being a member of CSUS is about being active in the community whether that be on Discord or in person.
+    </div>
 
-<div class="main">
-  <iframe class = "medias" src="https://discordapp.com/widget?id=214914276945559552&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-</div>
-<div class="main">
+  
 
+    <div class=".discordbox">
+      <iframe src="https://discordapp.com/widget?id=214914276945559552&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </div>
+
+  </div>
+  
   <script src="https://apps.elfsight.com/p/platform.js" defer></script>
       <div class="elfsight-app-c828e7a8-b770-4872-8ccc-97808c088e93"></div>
+
+
+
+
+  
 </div>
 
 </body>
