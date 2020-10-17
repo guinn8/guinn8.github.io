@@ -1,0 +1,97 @@
+@media(min-width:468px){
+    .topbar{
+      display: flex;
+      height: calc(12vh);
+      background-color: #2b303b;
+    }
+    
+    .contentContainer{
+      display:flex;  
+      justify-content:space-between;
+    }
+}
+  
+.topbar div, .contentContainer div{
+    padding:10px;
+}
+
+.currentPage{
+    background: #5e81ac;
+    flex-basis:calc(12vh);
+}
+
+.otherPage{
+    flex-basis:calc(12vh);
+}
+
+.textbox{
+    flex-basis: 75%;  
+}
+
+.discordbox{
+    flex-basis: 25%;
+}
+
+body{
+    background-color: #4c556a;
+}
+
+img{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block; /* remove extra space below image */
+}
+
+* {
+    color: whitesmoke;
+}
+
+h1 { 
+    text-decoration: underline;
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px; 
+    color:  #5e81ac;
+} 
+
+h3 { 
+    font-family: Lucida Sans Typewriter, Lucida Console, monaco, Bitstream Vera Sans Mono, monospace;
+    font-size: 14px;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; line-height: 15.4px; 
+} 
+
+
+blockquote {
+    font-family: Lucida Sans Typewriter, Lucida Console, monaco, Bitstream era Sans Mono, monospace; 
+    font-size: 21px;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400;
+    line-height: 30px; 
+} 
+
+pre { 
+    font-family: Lucida Sans Typewriter, Lucida Console, monaco, Bitstream Vera Sans Mono, monospace; 
+    font-size: 13px; font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5667px; 
+}
+
+ul, p{
+    list-style-type: "> ";
+    font-family: Lucida Sans Typewriter, Lucida Console, monaco, Bitstream Vera Sans Mono, monospace;
+    font-size: 16px; 
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400; 
+    line-height: 20px;
+    line-height:150%
+}
